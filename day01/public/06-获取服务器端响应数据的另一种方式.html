@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        var xhr = new XMLHttpRequest();
+        //0已经创建ajax对象但是还没有对ajax对象进行配置
+        console.log(xhr.readyState);
+        xhr.open('get', 'http://localhost:3000/readystate');
+        //1已经对ajax对象进行配置但是还没有发送请求
+        console.log(xhr.readyState);
+
+        //当ajax状态码发生变化的时候
+        xhr.onreadystatechange = function() {
+            //2 3 4
+            console.log(xhr.readyState);
+            //对状态码进行判断，如果等于4就说明数据已经接收完成了
+            if (xhr.readyState == 4) {
+                console.log(xhr.responseText);
+            }
+        }
+        xhr.send();
+    </script>
+</body>
+
+</html>

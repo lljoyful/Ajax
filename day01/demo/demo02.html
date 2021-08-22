@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var partition = function(s) {
+            let str = new Array();
+            let len = s.length;
+            let arr = new Array();
+            let t = [];
+            arr.push(...s);
+            str[0] = arr;
+            for (let k = 0; k < len; k++) {
+                i = k;
+                while (i != -1) {
+                    let start = i + 1;
+                    let flag = true;
+                    let j = arr.lastIndexOf(arr[i]);
+                    while (j != -1 && i < j) {
+                        let end = j - 1;
+                        while (start < end) {
+                            if (arr[start] == arr[end]) {
+                                start++;
+                                end--;
+                            } else {
+                                flag = false;
+                                break;
+                            }
+                        }
+                        if (flag && i < j) {
+                            //slice包括begin，不包括end
+                            // console.log(...(arr.slice(0, i)));
+                            t.push(...(arr.slice(0, i)));
+                            let s = arr.slice(i, j + 1).join('');
+                            console.log(s);
+                            t.push(s);
+                            console.log(...(arr.slice(j + 1, len)));
+                            t.push(...(arr.slice(j + 1, len)));
+                            // console.log(t.slice(0));
+                            str.push(t.slice(0));
+                            t.splice(0, t.length);
+                        }
+                        j = arr.lastIndexOf(arr[i], j - 1);
+                    }
+                    i = arr.indexOf(arr[k], i + 1);
+                }
+
+            }
+            return str;
+        };
+        console.log(partition("aaaa"));
+    </script>
+</body>
+
+</html>

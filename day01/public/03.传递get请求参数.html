@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>
+        <input type="text" id="username">
+    </p>
+    <p>
+        <input type="text" id="age">
+    </p>
+    <p>
+        <input type="button" value="提交" id="btn">
+    </p>
+    <script type="text/javascript">
+        var btn = document.getElementById('btn');
+        var username = document.getElementById('username');
+        var age = document.getElementById('age');
+        //为按钮添加点击事件
+        btn.onclick = function() {
+            var xhr = new XMLHttpRequest();
+            //获取用户在文本框中输入的值
+            var nameval = username.value;
+            var ageval = age.value;
+
+            //拼接请求参数
+            var params = 'username=' + nameval + '&age=' + ageval;
+            xhr.open('get', 'http://localhost:3000/get?' + params);
+            xhr.send();
+            //获取服务器响应的数据
+            xhr.onload = function() {
+                //是字符串类型的
+                console.log(xhr.responseText);
+                //可以通过json转化为对象型
+                console.log(JSON.parse(xhr.responseText));
+            }
+        }
+    </script>
+</body>
+
+</html>

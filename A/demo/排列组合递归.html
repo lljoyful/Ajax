@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var permutation = function(S) {
+        let n = S.length;
+        let result = new Array();
+        let arr = new Array(n).fill(0);
+        let str = [];
+
+        function dfs(str) {
+            if (str.length == n) {
+                result.push(str.join(''));
+                // str.splice(0, n);s
+                return;
+            }
+            for (let i = 0; i < n; i++) {
+                if (arr[i] == 0) {
+                    arr[i] = 1;
+                    str.push(S[i]);
+                    console.log(str);
+                    dfs(str);
+                    arr[i] = 0;
+                    str.pop();
+                }
+            }
+        }
+        dfs(str);
+        return result;
+    };
+    console.log(permutation('qbc'));
+</script>
+
+</html>

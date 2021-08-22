@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var maximumNumber = function(num, change) {
+            let flag = false;
+            let strAry = new Array();
+            strAry = num.split('');
+            let t, index;
+            for (let i = 0; i < num.length; i++) {
+                t = change[strAry[i]];
+                if (t > strAry[i]) {
+                    strAry[i] = t;
+                    index = i;
+                    flag = true;
+                    break;
+                }
+            }
+            if (flag) {
+                for (let i = index + 1; i < strAry.length; i++) {
+                    t = change[strAry[i]];
+                    if (t < strAry[i]) {
+                        break;
+                    }
+                    strAry[i] = t;
+                }
+            }
+            return strAry.join('');
+        };
+        console.log(maximumNumber("132", [9, 8, 5, 0, 3, 6, 4, 2, 6, 8]));
+    </script>
+</body>
+
+</html>

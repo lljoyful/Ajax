@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var maxCompatibilitySum = function(students, mentors) {
+            let row = students.length; //行
+            let col = students[0].length; //列
+            let arr = new Array(row).fill(0).map(val => new Array(row));
+            let mat;
+            for (let i = 0; i < row; i++) {
+                for (let k = 0; k < row; k++) {
+                    mat = 0;
+                    for (let j = 0; j < col; j++) {
+                        if (students[i][j] == mentors[k][j]) {
+                            mat++;
+                        }
+                    }
+                    arr[i][k] = mat;
+                }
+            }
+            let max = 0;
+            for (let i = 0; i < row; i++) {
+                max += Math.max(...arr[i]);
+            }
+            return max;
+        };
+        console.log(maxCompatibilitySum([
+            [1, 1, 0],
+            [1, 0, 1],
+            [0, 0, 1]
+        ], [
+            [1, 0, 0],
+            [0, 0, 1],
+            [1, 1, 0]
+        ]));
+    </script>
+</body>
+
+</html>
